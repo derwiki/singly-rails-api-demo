@@ -17,6 +17,13 @@ class AuthController < ApplicationController
     redirect_to "/"
   end
 
+  def logout
+    session.clear
+    redirect_to "/"
+  end
+
+private
+
   def token_params(code)
     {
       :client_id => ENV["SINGLY_ID"],
@@ -28,8 +35,6 @@ class AuthController < ApplicationController
   def token_url
     "#{SINGLY_API_BASE}/oauth/access_token"
   end
-
-private
 
   def auth_params(service)
     {
