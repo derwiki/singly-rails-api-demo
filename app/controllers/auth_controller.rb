@@ -1,14 +1,33 @@
+require 'httparty'
+
 class AuthController < ApplicationController
 
   def service
     redirect_to auth_url(params[:service])
   end
 
+  SINGLY_API_BASE = "https://api.singly.com"
+
   def callback
+    data = HTTParty.post(
+      token_url,
+      {:body => token_params(params[:code])}
+    ).parsed_response
+    session[:access_token] = data['access_token']
     redirect_to "/"
   end
 
-  SINGLY_API_BASE = "https://api.singly.com"
+  def token_params(code)
+    {
+      :client_id => ENV["SINGLY_ID"],
+      :client_secret => ENV["SINGLY_SECRET"],
+      :code => code
+    }
+  end
+
+  def token_url
+    "#{SINGLY_API_BASE}/oauth/access_token"
+  end
 
 private
 

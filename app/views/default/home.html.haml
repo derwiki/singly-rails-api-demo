@@ -1,1 +1,22 @@
-%h2 Hello World!
+%h1 Singly OAuth Example
+%h2
+  - if @profiles
+    Nice to see you again!
+  - else
+    Please connect a service
+- if @profiles
+  %p
+    Your Singly ID is
+    = @profiles["id"]
+    \.
+    %a(href="/logout") Log out
+%ul
+  - %w[facebook twitter].each do |service|
+    %li
+      = service.capitalize
+      - if @profiles && @profiles[service]
+        is connected as
+        = @profiles[service]
+      - else
+        is not connected.
+        %a(href="/auth/#{service}") Connect
