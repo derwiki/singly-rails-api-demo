@@ -1,0 +1,3 @@
+SINGLY_ID=3e29099ef0156cc9f3d34e532c7769cd \
+SINGLY_SECRET=d0fc4ca7435ab2a1e1a7b84f1d8dced8 \
+bundle exec rails server
