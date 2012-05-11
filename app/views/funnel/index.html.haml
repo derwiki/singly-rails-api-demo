@@ -1,0 +1,22 @@
+#layout
+  %h1 Funnel
+
+  %form#quick-search
+    %fieldset
+      %legend Search by anything
+      %label Search by fuzz
+      %input#query
+
+  %ul#grid
+    -20.times do |i|
+      %li{ :id => "member-#{i}"}
+        image
+        %dl
+          %dt name
+          %dd john doe
+          %dt job
+          %dd engineer @ somewhere
+          %dt meta
+          %dd data
+
+  .ClearFix
